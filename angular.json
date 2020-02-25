@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/real-sucos-app",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -23,7 +24,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/minireset.css/minireset.css",
+              "src/styles.css",
+              "node_modules/igniteui-angular/styles/igniteui-angular.css"
             ],
             "scripts": []
           },
@@ -49,6 +52,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -79,7 +86,8 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/igniteui-angular/styles/igniteui-angular.css"
             ],
             "scripts": [],
             "assets": [
@@ -131,5 +139,8 @@
       }
     }
   },
-  "defaultProject": "real-sucos-app"
+  "defaultProject": "real-sucos-app",
+  "cli": {
+    "analytics": "fe9afff7-cd87-4b67-9a63-71e410227285"
+  }
 }
