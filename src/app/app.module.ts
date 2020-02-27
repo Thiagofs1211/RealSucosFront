@@ -9,14 +9,20 @@ import { PedidosComponent } from './pedidos/pedidos.component';
 import { NgxNavbarModule } from 'ngx-bootstrap-navbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxTabsModule } from 'igniteui-angular';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
+import { ProdutoAdicionarDialogComponent } from './produto-adicionar-dialog/produto-adicionar-dialog.component'
+import { MaterialModule } from './material.module';
+import { ProdutoEditarDialogComponent } from './produto-editar-dialog/produto-editar-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientesComponent,
     ProdutosComponent,
-    PedidosComponent
+    PedidosComponent,
+    ProdutoAdicionarDialogComponent,
+    ProdutoEditarDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -24,10 +30,13 @@ import { HttpClientModule } from '@angular/common/http';
     NgxNavbarModule,
     BrowserAnimationsModule,
     IgxTabsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MaterialModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [HttpClient],
+  bootstrap: [AppComponent],
+  entryComponents: [ProdutoAdicionarDialogComponent]
 })
 export class AppModule {
 }

@@ -1,8 +1,54 @@
 <igx-tabs>
   <igx-tabs-group label="Produtos Avulso">
-    Produtos Avulso
+    <button mat-raised-button (click)="openDialogAvulso()" class="button">Adcicionar Produto</button>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 10%; text-align: center;"><strong>#</strong></th>
+          <td style="width: 30%; text-align: center;"><strong>Nome</strong></td>
+          <td style="width: 30%; text-align: center;"><strong>Marca</strong></td>
+          <td style="width: 15%; text-align: center;"><strong>Preço</strong></td>
+          <td style="width: 15%; text-align: center;"><strong>Ações</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of produtosAvulso; index as i">
+          <th style="width: 10%; text-align: center;">{{i+1}}</th>
+          <td style="width: 30%; text-align: center;">{{item.nome}}</td>
+          <td style="width: 30%; text-align: center;">{{item.marca}}</td>
+          <td style="width: 15%; text-align: center;">{{item.preco | currency:'BRL': ''}}</td>
+          <td>
+            <button class="buttonAction"><mat-icon (click)="openDialogEdit(item);">edit</mat-icon></button>
+            <button class="buttonAction"><mat-icon (click)="deleteProduto(item);">delete</mat-icon></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </igx-tabs-group>
   <igx-tabs-group label="Produtos Comércio">
-    Produtos Comércio
+    <button mat-raised-button (click)="openDialogComercio()" class="button">Adcicionar Produto</button>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 10%; text-align: center;"><strong>#</strong></th>
+          <td style="width: 30%; text-align: center;"><strong>Nome</strong></td>
+          <td style="width: 30%; text-align: center;"><strong>Marca</strong></td>
+          <td style="width: 15%; text-align: center;"><strong>Preço</strong></td>
+          <td style="width: 15%; text-align: center;"><strong>Ações</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of produtosComercio; index as i">
+          <th style="width: 10%; text-align: center;">{{i+1}}</th>
+          <td style="width: 30%; text-align: center;">{{item.nome}}</td>
+          <td style="width: 30%; text-align: center;">{{item.marca}}</td>
+          <td style="width: 15%; text-align: center;">{{item.preco | currency:'BRL': ''}}</td>
+          <td>
+            <button class="buttonAction"><mat-icon (click)="openDialogEdit(item);">edit</mat-icon></button>
+            <button class="buttonAction"><mat-icon (click)="deleteProduto(item);">delete</mat-icon></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </igx-tabs-group>
 </igx-tabs>

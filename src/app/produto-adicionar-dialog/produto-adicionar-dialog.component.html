@@ -1,0 +1,23 @@
+<h4 mat-dialog-title>Adicionar Produto</h4>
+<div>
+  <strong>Nome: </strong>
+</div>
+<div>
+  <input matInput [(ngModel)]="data.nome">
+</div>
+<div>
+  <strong>Marca:</strong>
+</div>
+<div>
+  <input matInput [(ngModel)]="data.marca">
+</div>
+<div>
+  <strong>Preço:</strong>
+</div>
+<div>
+  <input type="number" matInput [(ngModel)]="data.preco">
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="salvarProduto()" cdkFocusInitial>Salvar</button>
+  <button mat-button (click)="onNoClick()">Fechar</button>
+</div>

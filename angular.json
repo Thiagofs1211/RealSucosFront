@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/minireset.css/minireset.css",
               "src/styles.css",
               "node_modules/igniteui-angular/styles/igniteui-angular.css"
@@ -62,6 +63,7 @@
           }
         },
         "serve": {
+          "proxyConfig": "./proxy.config.js",
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "real-sucos-app:build"
@@ -86,6 +88,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
               "node_modules/igniteui-angular/styles/igniteui-angular.css"
             ],
