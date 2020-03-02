@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import { Cliente } from './clientes/cliente';
 
 const endpoint = 'http://localhost:8080';
 const httpOptions = {
@@ -61,4 +62,15 @@ export class RestService {
   alterarProduto(data: object): Observable<any> {
     return this.http.put(endpoint + '/produtos/alterar', JSON.stringify(data), this.headers);
   }
+
+  // listarClientes(): Observable<any> {
+  //   return this.http.get(endpoint + '/clientes').pipe(
+  //     map(this.extractData));
+  // }
+
+  listarClientes(): Promise<Cliente> {
+    return this.http.get<Cliente>(`${endpoint}/clientes`).
+    toPromise();
+  }
+
 }

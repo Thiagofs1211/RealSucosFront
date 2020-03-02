@@ -1,3 +1,23 @@
-<p>
-  clientes works!
-</p>
+<table>
+  <thead>
+    <tr>
+      <td style="width: 20%; text-align: center;"><strong>Nome</strong></td>
+      <td style="width: 20%; text-align: center;"><strong>Telefone</strong></td>
+      <td style="width: 20%; text-align: center;"><strong>Celular</strong></td>
+      <td style="width: 20%; text-align: center;"><strong>Comércio</strong></td>
+      <td style="width: 20%; text-align: center;"><strong>Ações</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of clientes">
+      <td>{{item.nome}}</td>
+      <td>{{item.telefone}}</td>
+      <td>{{item.celular}}</td>
+      <td>{{item.comercio}}</td>
+      <td>
+        <button class="buttonAction"><mat-icon>edit</mat-icon></button>
+        <button class="buttonAction"><mat-icon>delete</mat-icon></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

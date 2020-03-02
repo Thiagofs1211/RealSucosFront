@@ -27,7 +27,6 @@ export class ProdutosComponent implements OnInit {
 
   getterProdutosAvulso(){
     this.service.getProdutosAvulso().subscribe( (data: Produto) => {
-      debugger;
         this.produtosAvulso = data;
     }, error => {
         this.erro = error;

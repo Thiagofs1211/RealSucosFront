@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProdutoAdicionarDialogComponent } from './produto-adicionar-dialog/produto-adicionar-dialog.component'
 import { MaterialModule } from './material.module';
 import { ProdutoEditarDialogComponent } from './produto-editar-dialog/produto-editar-dialog.component';
+import { AdicionarClienteDialogComponent } from './adicionar-cliente-dialog/adicionar-cliente-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProdutoEditarDialogComponent } from './produto-editar-dialog/produto-ed
     ProdutosComponent,
     PedidosComponent,
     ProdutoAdicionarDialogComponent,
-    ProdutoEditarDialogComponent
+    ProdutoEditarDialogComponent,
+    AdicionarClienteDialogComponent
   ],
   imports: [
     BrowserModule,
