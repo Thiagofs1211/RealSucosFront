@@ -63,14 +63,12 @@ export class RestService {
     return this.http.put(endpoint + '/produtos/alterar', JSON.stringify(data), this.headers);
   }
 
-  // listarClientes(): Observable<any> {
-  //   return this.http.get(endpoint + '/clientes').pipe(
-  //     map(this.extractData));
-  // }
+  listarClientes(): Observable <any> {
+    return this.http.get<Cliente>(`${endpoint}/clientes`);
+  }
 
-  listarClientes(): Promise<Cliente> {
-    return this.http.get<Cliente>(`${endpoint}/clientes`).
-    toPromise();
+  listarClientesNome(nome: String): Observable<any> {
+    return this.http.get<Cliente>(endpoint + '/clientes/buscar/' + nome);
   }
 
 }

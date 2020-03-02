@@ -8,3 +8,24 @@ table {
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
+
+  .buttonAction{
+    border: none;
+    background-color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .input {
+    float: left;
+    padding: 6px;
+    margin-top: 8px;
+    margin-left: 16px;
+    font-size: 17px;
+}
+
+.buttonSearch {
+  margin-top: 8px;
+  height: 36px;
+}

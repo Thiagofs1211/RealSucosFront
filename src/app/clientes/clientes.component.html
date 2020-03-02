@@ -1,3 +1,5 @@
+<input type="text" class="input" [(ngModel)]="searchString" placeholder="Search...">
+<button class="buttonSearch" (click)="getterNome()"><mat-icon>search</mat-icon></button>
 <table>
   <thead>
     <tr>
@@ -10,11 +12,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of clientes">
-      <td>{{item.nome}}</td>
-      <td>{{item.telefone}}</td>
-      <td>{{item.celular}}</td>
-      <td>{{item.comercio}}</td>
-      <td>
+      <td style="width: 20%; text-align: center;">{{item.nome}}</td>
+      <td style="width: 20%; text-align: center;">{{item.telefone}}</td>
+      <td style="width: 20%; text-align: center;">{{item.celular}}</td>
+      <td style="width: 20%; text-align: center;">{{item.comercio}}</td>
+      <td style="width: 20%; text-align: center;">
         <button class="buttonAction"><mat-icon>edit</mat-icon></button>
         <button class="buttonAction"><mat-icon>delete</mat-icon></button>
       </td>

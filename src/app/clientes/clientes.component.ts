@@ -10,7 +10,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 export class ClientesComponent implements OnInit {
 
-  clientes: Cliente;
+  clientes: Cliente[];
+  searchString: String;
 
   constructor(public service: RestService, public dialog: MatDialog) {
     this.getter();
@@ -19,13 +20,32 @@ export class ClientesComponent implements OnInit {
   ngOnInit() {
   }
 
+  mascaras(){
+    debugger;
+    for(let cliente of this.clientes){
+      if(cliente.celular != null || cliente.celular != undefined){
+        cliente.celular.replace(/^(\d{0})(\d{0,4})(\d{0,4})/, '$1 $2-$3');
+      }
+    }
+  }
+
   getter(){
-    this.service.listarClientes().then((data) =>{
-//    subscribe((data: Cliente) =>{
+    this.service.listarClientes().subscribe((data: Cliente[]) =>{
       this.clientes = data;
+     // this.mascaras();
       console.log("Sucesso listar Clientes.");
     }, error => {
       debugger;
+      console.log("erro: " + error);
+    })
+  }
+
+  getterNome(){
+    debugger;
+    this.service.listarClientesNome(this.searchString).subscribe((data: Cliente[]) => {
+      this.clientes = data;
+      console.log("Sucesso buscar Cliente pelo nome.");
+    }, error => {
       console.log("erro: " + error);
     })
   }
