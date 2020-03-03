@@ -71,4 +71,22 @@ export class RestService {
     return this.http.get<Cliente>(endpoint + '/clientes/buscar/' + nome);
   }
 
+  criarCliente(data: object): Observable<any> {
+    return this.http.post(endpoint + '/clientes/cadastro', JSON.stringify(data),this.headers);
+  }
+
+  editarCliente(data: object): Observable<any> {
+    return this.http.put(endpoint + '/clientes/alterar', JSON.stringify(data),this.headers);
+  }
+
+  removerCliente(data: object): Observable<any> {
+    var options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(data),
+    };
+    return this.http.delete(endpoint + '/clientes/deletar', options);
+  }
+
 }

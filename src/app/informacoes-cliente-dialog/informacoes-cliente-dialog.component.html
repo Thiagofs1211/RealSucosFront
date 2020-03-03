@@ -1,0 +1,37 @@
+<h4 mat-dialog-title>Informações Cliente</h4>
+<div>
+  <strong>Nome: </strong>
+</div>
+<div>
+  <input matInput [(ngModel)]="data.nome" class="input" disabled>
+</div>
+<div>
+  <strong>Telefone:</strong>
+  <strong class="divCel">Celular:</strong>
+</div>
+<div>
+  <input matInput [(ngModel)]="data.telefone" class="tel"  mask="0000-0000" disabled>
+  <input matInput [(ngModel)]="data.celular" class="cel" mask="0 0000-0000" disabled>
+</div>
+<div>
+  <strong>Bairro:</strong>
+</div>
+<div>
+  <input matInput [(ngModel)]="data.bairro" class="input" disabled>
+</div>
+<div>
+    <strong>Endereço:</strong>
+</div>
+<div>
+    <input matInput [(ngModel)]="data.endereco" class="input" disabled>
+</div>
+<div>
+    <strong>Comercio?</strong>
+</div>
+<select [(ngModel)]="data.comercio" disabled>
+    <option value="S">Sim</option>
+    <option value="N">Não</option>
+</select>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Fechar</button>
+</div>

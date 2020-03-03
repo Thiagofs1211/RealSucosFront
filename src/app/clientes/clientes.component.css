@@ -20,12 +20,23 @@ table {
   .input {
     float: left;
     padding: 6px;
-    margin-top: 8px;
+    margin-top: 10px;
     margin-left: 16px;
     font-size: 17px;
 }
 
 .buttonSearch {
-  margin-top: 8px;
+  margin-top: 10px;
   height: 36px;
+}
+
+.button {
+  float: right;
+  padding: 5px 24px;
+  background-color: green;
+  color: white;
+  width: 20%;
+  top: 10px;
+  margin-bottom: 10px;
+  right: 10px;
 }

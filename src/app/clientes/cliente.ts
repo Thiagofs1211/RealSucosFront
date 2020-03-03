@@ -5,6 +5,6 @@ export class Cliente{
     celular: String;
     bairro: String;
     endereco: String;
-//    dataCadastro: Date;
+    dataCadastro: Date;
     comercio: String;
 }

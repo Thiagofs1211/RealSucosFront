@@ -9,6 +9,8 @@
     border: 1px solid;
     border-radius: 4px;
     padding: 12px 20px;
+    background-color: white;
+    color: black;
 }
 
 .tel{
@@ -18,6 +20,8 @@
     border: 1px solid;
     border-radius: 4px;
     padding: 12px 20px;
+    background-color: white;
+    color: black;
 }
 
 .cel{
@@ -28,6 +32,8 @@
     border-radius: 4px;
     padding: 12px 20px;
     float: right;
+    background-color: white;
+    color: black;
 }
 
 label {

@@ -15,6 +15,11 @@ import { ProdutoAdicionarDialogComponent } from './produto-adicionar-dialog/prod
 import { MaterialModule } from './material.module';
 import { ProdutoEditarDialogComponent } from './produto-editar-dialog/produto-editar-dialog.component';
 import { AdicionarClienteDialogComponent } from './adicionar-cliente-dialog/adicionar-cliente-dialog.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { EditarClienteDialogComponent } from './editar-cliente-dialog/editar-cliente-dialog.component';
+import { InformacoesClienteDialogComponent } from './informacoes-cliente-dialog/informacoes-cliente-dialog.component';
+
+export var options: Partial<IConfig> | (() => Partial<IConfig>);
 
 @NgModule({
   declarations: [
@@ -24,7 +29,9 @@ import { AdicionarClienteDialogComponent } from './adicionar-cliente-dialog/adic
     PedidosComponent,
     ProdutoAdicionarDialogComponent,
     ProdutoEditarDialogComponent,
-    AdicionarClienteDialogComponent
+    AdicionarClienteDialogComponent,
+    EditarClienteDialogComponent,
+    InformacoesClienteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +41,8 @@ import { AdicionarClienteDialogComponent } from './adicionar-cliente-dialog/adic
     IgxTabsModule,
     HttpClientModule,
     MatIconModule,
-    MaterialModule
+    MaterialModule,
+    NgxMaskModule.forRoot(options)
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent],

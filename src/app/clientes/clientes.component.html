@@ -1,24 +1,26 @@
 <input type="text" class="input" [(ngModel)]="searchString" placeholder="Search...">
 <button class="buttonSearch" (click)="getterNome()"><mat-icon>search</mat-icon></button>
+<button mat-raised-button class="button" (click)="openDialog()">Adcicionar Produto</button>
 <table>
   <thead>
     <tr>
-      <td style="width: 20%; text-align: center;"><strong>Nome</strong></td>
+      <td style="width: 30%; text-align: center;"><strong>Nome</strong></td>
       <td style="width: 20%; text-align: center;"><strong>Telefone</strong></td>
       <td style="width: 20%; text-align: center;"><strong>Celular</strong></td>
-      <td style="width: 20%; text-align: center;"><strong>Comércio</strong></td>
+      <td style="width: 10%; text-align: center;"><strong>Comércio</strong></td>
       <td style="width: 20%; text-align: center;"><strong>Ações</strong></td>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of clientes">
-      <td style="width: 20%; text-align: center;">{{item.nome}}</td>
-      <td style="width: 20%; text-align: center;">{{item.telefone}}</td>
-      <td style="width: 20%; text-align: center;">{{item.celular}}</td>
-      <td style="width: 20%; text-align: center;">{{item.comercio}}</td>
+      <td style="width: 30%; text-align: center;">{{item.nome}}</td>
+      <td style="width: 20%; text-align: center;">{{item.telefone | mask: '0000-0000'}}</td>
+      <td style="width: 20%; text-align: center;">{{item.celular | mask: '0 0000-0000'}}</td>
+      <td style="width: 10%; text-align: center;">{{item.comercio}}</td>
       <td style="width: 20%; text-align: center;">
-        <button class="buttonAction"><mat-icon>edit</mat-icon></button>
-        <button class="buttonAction"><mat-icon>delete</mat-icon></button>
+        <button class="buttonAction" (click)="openDialogInfo(item);"><mat-icon>info</mat-icon></button>
+        <button class="buttonAction" (click)="openDialogEdit(item);"><mat-icon>edit</mat-icon></button>
+        <button class="buttonAction" (click)="removerCliente(item);"><mat-icon>delete</mat-icon></button>
       </td>
     </tr>
   </tbody>

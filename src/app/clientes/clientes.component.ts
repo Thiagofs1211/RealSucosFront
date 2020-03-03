@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RestService } from '../rest.service';
 import { Cliente } from './cliente';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AdicionarClienteDialogComponent } from '../adicionar-cliente-dialog/adicionar-cliente-dialog.component';
+import { EditarClienteDialogComponent } from '../editar-cliente-dialog/editar-cliente-dialog.component';
+import { InformacoesClienteDialogComponent } from '../informacoes-cliente-dialog/informacoes-cliente-dialog.component';
 
 @Component({
   selector: 'app-clientes',
@@ -20,34 +23,90 @@ export class ClientesComponent implements OnInit {
   ngOnInit() {
   }
 
-  mascaras(){
-    debugger;
-    for(let cliente of this.clientes){
-      if(cliente.celular != null || cliente.celular != undefined){
-        cliente.celular.replace(/^(\d{0})(\d{0,4})(\d{0,4})/, '$1 $2-$3');
-      }
-    }
-  }
-
   getter(){
     this.service.listarClientes().subscribe((data: Cliente[]) =>{
       this.clientes = data;
-     // this.mascaras();
       console.log("Sucesso listar Clientes.");
     }, error => {
-      debugger;
       console.log("erro: " + error);
     })
   }
 
   getterNome(){
-    debugger;
     this.service.listarClientesNome(this.searchString).subscribe((data: Cliente[]) => {
       this.clientes = data;
       console.log("Sucesso buscar Cliente pelo nome.");
-    }, error => {
+    }, error => { 
+      if(error.status == 404){
+        this.clientes = [];
+      }
       console.log("erro: " + error);
     })
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AdicionarClienteDialogComponent, {
+      width: '1000px', height: '700px',
+      data: {
+        nome: "",
+        telefone: "",
+        celular: "",
+        bairro: "",
+        endereco: ""
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getter();
+    });
+  }
+
+  openDialogEdit(item: Cliente): void {
+    const dialogRef = this.dialog.open(EditarClienteDialogComponent, {
+      width: '1000px', height: '700px',
+      data: {
+        nome: item.nome,
+        telefone: item.telefone,
+        celular: item.celular,
+        bairro: item.bairro,
+        endereco: item.endereco,
+        comercio: item.comercio,
+        idCliente: item.idCliente,
+        dataCadastro: item.dataCadastro
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getter();
+    });
+  }
+
+  removerCliente(item: Cliente){
+    if(confirm("Deseja realmente deletar o cliente " + item.nome + "?")){
+      this.service.removerCliente(item).subscribe(data => {
+        console.log("Sucesso em remover o cliente.");
+        alert("Sucesso em remover o cliente.");
+        this.getter();
+      }, error =>{
+        console.log(error);
+        alert("Erro ao excluir o cliente.");
+      })
+    }
+  }
+
+  openDialogInfo(item: Cliente): void {
+    const dialogRef = this.dialog.open(InformacoesClienteDialogComponent, {
+      width: '1000px', height: '700px',
+      data: {
+        nome: item.nome,
+        telefone: item.telefone,
+        celular: item.celular,
+        bairro: item.bairro,
+        endereco: item.endereco,
+        comercio: item.comercio,
+        idCliente: item.idCliente,
+        dataCadastro: item.dataCadastro
+      }
+    });
+  }
 }
