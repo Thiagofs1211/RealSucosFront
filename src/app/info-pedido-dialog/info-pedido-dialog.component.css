@@ -1,0 +1,77 @@
+h4 {
+    text-align:center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.input{
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 4px;
+    color: black;
+    text-align: center;
+}
+
+.tel{
+    width: 40%;
+    margin: 20px 0;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 12px 20px;
+}
+
+.cel{
+    width: 40%;
+    margin: 20px 0;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 12px 20px;
+    float: right;
+}
+
+.label{ 
+    background-color: darkgray;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  
+  .buttonAction{
+    border: none;
+    background-color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .buttonFechar {
+    background-color: #f60808;
+    color: white;
+    width: 20%;
+    top: 10px;
+    right: 10px;
+    margin-top: 20px;
+    padding: 5px 24px;
+  }
+  
+  .buttonSalvar {
+    float: right;
+    background-color: green;
+    color: white;
+    width: 20%;
+    top: 10px;
+    right: 10px;
+    margin-top: 20px;
+    padding: 5px 24px;
+  }

@@ -1,3 +1,84 @@
-<p>
-  pedidos works!
-</p>
+<div id="pedidoInicio">
+  <div id="buttons">
+    <input type="text" class="input" [(ngModel)]="searchString" placeholder="Search...">
+    <button class="buttonSearch" (click)="getterNome()"><mat-icon>search</mat-icon></button>
+    <button mat-raised-button id="buttonCriar" class="button" (click)="openDialog()" disabled>Criar Pedido</button>
+    <button mat-raised-button id="buttonListar" class="button" (click)="ListarPedidosCliente()" style="right: 30px;" disabled>Listar Pedidos</button>
+    <button mat-raised-button class="button" (click)="procurarPedidos()" style="right: 50px;">Procurar Pedidos</button>
+  </div>
+  <mat-radio-group [(ngModel)]="clienteSelected" (click)="habilitarButtons()">
+    <table id="tableCliente">
+      <thead>
+        <tr>
+          <td style="width: 5%;"></td>
+          <td style="width: 30%; text-align: center;"><strong>Nome</strong></td>
+          <td style="width: 15%; text-align: center;"><strong>Telefone</strong></td>
+          <td style="width: 20%; text-align: center;"><strong>Celular</strong></td>
+          <td style="width: 10%; text-align: center;"><strong>Comércio</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of clientes">
+            <td style="width: 5%; float: center; padding-left: 40px;padding-right: 0px;"><mat-radio-button [value]=item></mat-radio-button></td>
+            <td style="width: 30%; text-align: center;">{{item.nome}}</td>
+            <td style="width: 15%; text-align: center;">{{item.telefone | mask: '0000-0000'}}</td>
+            <td style="width: 20%; text-align: center;">{{item.celular | mask: '0 0000-0000'}}</td>
+            <td *ngIf="item.comercio == 'S'" style="width: 10%; text-align: center;">Sim</td>
+            <td *ngIf="item.comercio == 'N'" style="width: 10%; text-align: center;">Não</td>
+          </tr>
+      </tbody>
+    </table>
+  </mat-radio-group>
+</div>
+
+<div id="litarPedidosCliente" hidden>
+  <div style="text-align: center;">
+    <strong>Data Início: </strong>
+    <mat-form-field style="margin-right: 30px;">
+      <input matInput [matDatepicker]="pickerInicio" id="dataInicio" [(ngModel)]="dataInicio">
+      <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+      <mat-datepicker #pickerInicio></mat-datepicker>
+    </mat-form-field>
+    <strong>Data Fim: </strong>
+    <mat-form-field>
+      <input matInput [matDatepicker]="pickerFim" id="dataFim" [(ngModel)]="dataFim">
+      <mat-datepicker-toggle matSuffix [for]="pickerFim"></mat-datepicker-toggle>
+      <mat-datepicker #pickerFim></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div style="text-align: center;" id="buttonsListarCliente" hidden> 
+    <button mat-raised-button class="buttonVoltar" (click)="voltarListarPedidoCliente()">Voltar</button>
+    <button mat-raised-button class="buttonPesquisar" (click)="pesquisarPedidosCliente()">Pesquisar</button>
+  </div>
+  <div style="text-align: center;" id="buttonsListar" hidden> 
+    <button mat-raised-button class="buttonVoltar" (click)="voltarListarPedidoCliente()">Voltar</button>
+    <button mat-raised-button class="buttonPesquisar" (click)="pesquisarPedidos()">Pesquisar</button>
+  </div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <td style="width: 10%; text-align: center;"><strong>Número do Pedido</strong></td>
+          <td style="width: 30%; text-align: center;"><strong>Nome Cliente</strong></td>
+          <td style="width: 15%; text-align: center;"><strong>Data do Pedido</strong></td>
+          <td style="width: 20%; text-align: center;"><strong>Valor Total</strong></td>
+          <td style="width: 10%; text-align: center;"><strong>Informações</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pedidosCliente | paginate: { itemsPerPage: 10, currentPage: page }">
+          <td style="width: 10%; text-align: center;">{{item.pedido.idPedido}}</td>
+          <td style="width: 30%; text-align: center;">{{item.pedido.cliente.nome}}</td>
+          <td style="width: 15%; text-align: center;">{{item.pedido.dataPedido | date:'dd/MM/yyyy':'UTC'}}</td>
+          <td style="width: 20%; text-align: center;">{{item.pedido.valorTotal | currency:'BRL': ''}}</td>
+          <td style="width: 10%; text-align: center;">
+            <button class="buttonAction" (click)="openDialogInfo(item);"><mat-icon>info</mat-icon></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="ngx-pagination">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>

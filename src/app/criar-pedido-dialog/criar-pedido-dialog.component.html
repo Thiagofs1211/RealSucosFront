@@ -1,0 +1,40 @@
+<h4>Criar Pedido</h4>
+<table>
+    <thead>
+      <tr>
+        <th style="width: 10%; text-align: center;"><strong>#</strong></th>
+        <td style="width: 30%; text-align: center;"><strong>Nome</strong></td>
+        <td style="width: 30%; text-align: center;"><strong>Marca</strong></td>
+        <td style="width: 15%; text-align: center;"><strong>Preço</strong></td>
+        <td style="width: 15%; text-align: center;"><strong>Quantidade</strong></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of produtos; index as i">
+        <td style="width: 10%; text-align: center;">
+            <input type="checkbox" [(ngModel)]="item.isChecked" (change)="habilitaQuantidade(i)"/>
+        </td>
+        <td style="width: 30%; text-align: center;">{{item.nome}}</td>
+        <td style="width: 30%; text-align: center;">{{item.marca}}</td>
+        <td style="width: 15%; text-align: center;">{{item.preco | currency:'BRL': ''}}</td>
+        <td><input type="number" id="quantidade{{i}}" disabled [(ngModel)]="item.quantidade" (change)="calculaValorTotal()"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="valorTotal">
+      <input currencyMask disabled class="valorTotalInput" id="valorTotal" [(ngModel)]="valorTotal">
+      <strong class="valorFinal">Valor Total</strong>
+  </div>
+  <br>
+  <div class="valorTotal">
+    <input currencyMask class="valorTotalInput" [(ngModel)]="desconto" (blur)="aplicaDesconto()">
+    <strong class="valorFinal">Desconto</strong>
+  </div>
+  <br>
+  <div class="valorTotal">
+    <input currencyMask disabled class="valorTotalInput" [(ngModel)]="valorFinal">
+    <strong class="valorFinal">Valor Final</strong>
+</div>
+<br>
+<button (click)="onNoClick();" class="buttonFechar mat-focus-indicator button mat-raised-button mat-button-base">Fechar</button>
+<button (click)="salvarPedido();" class="buttonSalvar mat-focus-indicator button mat-raised-button mat-button-base">Salvar Pedido</button>

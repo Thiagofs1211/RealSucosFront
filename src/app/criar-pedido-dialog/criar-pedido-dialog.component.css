@@ -1,0 +1,86 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+  }
+
+  h4 {
+    text-align:center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+input{
+    width: 90%;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 3px 20px;
+    text-align: center;
+}
+
+input[type="checkbox"] {
+  border: 1px solid #5D5C5C;
+  content: "\00a0";
+  display: inline-block;
+  font: 16px/1em sans-serif;
+  height: 16px;
+  margin: 0 .25em 0 0;
+  padding:0;
+  vertical-align: top;
+  width: 16px;
+  border-radius:4px;
+  vertical-align: inherit;
+}
+
+input[type="checkbox"]:checked {
+  background: #A0A0A0;
+  color: #FFF;
+  content: "\2713";
+  text-align: center;
+}
+
+input[type="checkbox"]:checked {
+  font-weight: bold;
+}
+
+.valorTotal{
+  margin: 20px 0;
+}
+
+.valorTotalInput {
+  float: right;
+  width: 15%;
+  margin-left: 10px;
+}
+
+.valorFinal{
+  float: right;
+}
+
+.buttonFechar {
+  background-color: #f60808;
+  color: white;
+  width: 20%;
+  top: 10px;
+  right: 10px;
+  margin-top: 20px;
+  padding: 5px 24px;
+}
+
+.buttonSalvar {
+  float: right;
+  background-color: green;
+  color: white;
+  width: 20%;
+  top: 10px;
+  right: 10px;
+  margin-top: 20px;
+  padding: 5px 24px;
+}

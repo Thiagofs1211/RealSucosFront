@@ -18,8 +18,28 @@ import { AdicionarClienteDialogComponent } from './adicionar-cliente-dialog/adic
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { EditarClienteDialogComponent } from './editar-cliente-dialog/editar-cliente-dialog.component';
 import { InformacoesClienteDialogComponent } from './informacoes-cliente-dialog/informacoes-cliente-dialog.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { CriarPedidoDialogComponent } from './criar-pedido-dialog/criar-pedido-dialog.component';
+import {MatDatepickerModule} from '@angular/material/datepicker'
+import { MatNativeDateModule, DateAdapter } from '@angular/material/core';
+import { DateFormat } from './DateFormat';
+import { InfoPedidoDialogComponent } from './info-pedido-dialog/info-pedido-dialog.component';
+import { NgxCurrencyModule } from "ngx-currency";
+import {NgxPaginationModule} from 'ngx-pagination';
 
 export var options: Partial<IConfig> | (() => Partial<IConfig>);
+
+export const customCurrencyMaskConfig = {
+  align: "center",
+  allowNegative: true,
+  allowZero: true,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: ".",
+  nullable: true
+};
 
 @NgModule({
   declarations: [
@@ -31,7 +51,9 @@ export var options: Partial<IConfig> | (() => Partial<IConfig>);
     ProdutoEditarDialogComponent,
     AdicionarClienteDialogComponent,
     EditarClienteDialogComponent,
-    InformacoesClienteDialogComponent
+    InformacoesClienteDialogComponent,
+    CriarPedidoDialogComponent,
+    InfoPedidoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,11 +64,19 @@ export var options: Partial<IConfig> | (() => Partial<IConfig>);
     HttpClientModule,
     MatIconModule,
     MaterialModule,
-    NgxMaskModule.forRoot(options)
+    NgxMaskModule.forRoot(options),
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
+    NgxPaginationModule
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, MatDatepickerModule,{ provide: DateAdapter, useClass: DateFormat }],
   bootstrap: [AppComponent],
   entryComponents: [ProdutoAdicionarDialogComponent]
 })
 export class AppModule {
+  constructor(private dateAdapter: DateAdapter<Date>) {
+    dateAdapter.setLocale("en-in"); // DD/MM/YYYY
+  }
 }

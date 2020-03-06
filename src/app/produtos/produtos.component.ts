@@ -85,7 +85,6 @@ export class ProdutosComponent implements OnInit {
   }
 
   openDialogEdit(item: Produto): void {
-    debugger;
     const dialogRef = this.dialog.open(ProdutoEditarDialogComponent, {
       width: '1000px',
       data: {

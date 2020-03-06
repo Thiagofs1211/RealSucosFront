@@ -1,0 +1,64 @@
+<h4 mat-dialog-title>Informações do Pedido</h4>
+<div>
+    <div style="text-align: center;"><strong>Informações Cliente</strong></div>
+    <div style="margin-top: 10px;">
+        <label><strong>Nome: </strong></label>
+        <input matInput [(ngModel)]="data.pedidoData.pedido.cliente.nome" class="input" style="width: 30%;" disabled>
+
+        <label style="margin-left: 40px;"><strong>Telefone: </strong></label>
+        <input matInput [(ngModel)]="data.pedidoData.pedido.cliente.telefone" class="input" style="width: 15%;" mask="0000-0000" disabled>
+
+        <label style="margin-left: 40px;"><strong class="divCel">Celular: </strong></label>
+        <input matInput [(ngModel)]="data.pedidoData.pedido.cliente.celular" class="input" style="width: 15%;" mask="0 0000-0000" disabled>
+    </div>
+    <div style="margin-top: 20px;">
+    <label><strong>Bairro: </strong></label>
+    <input matInput [(ngModel)]="data.pedidoData.pedido.cliente.bairro" class="input" style="width: 20%;" disabled>
+
+    <label style="margin-left: 20px;"><strong>Endereço: </strong></label>
+    <input matInput [(ngModel)]="data.pedidoData.pedido.cliente.endereco" class="input" style="width: 60%;" disabled>
+    </div>
+</div>
+<div style="margin-top: 30px;">
+    <div style="text-align: center;"><strong>Produtos</strong></div>
+    <table>
+        <thead>
+          <tr>
+            <td style="width: 30%; text-align: center;"><strong>Nome</strong></td>
+            <td style="width: 30%; text-align: center;"><strong>Marca</strong></td>
+            <th style="width: 10%; text-align: center;"><strong>Quantidade</strong></th>
+            <td style="width: 15%; text-align: center;"><strong>Preço</strong></td>
+            <td style="width: 15%; text-align: center;"><strong>Excluir</strong></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data.pedidoData.itemPedido; index as i">
+            <td style="width: 30%; text-align: center;">{{item.pk.produto.nome}}</td>
+            <td style="width: 30%; text-align: center;">{{item.pk.produto.marca}}</td>
+            <th style="width: 10%; text-align: center;">
+                <input matInput (change)="alterarValor()" [(ngModel)]="item.quantidade" class="input" style="width: 60%;">
+            </th>
+            <td style="width: 15%; text-align: center;">{{item.preco | currency:'BRL': ''}}</td>
+            <td>
+              <button class="buttonAction" style="margin-left: 20px;"><mat-icon (click)="deleteProduto(item);">delete_forever</mat-icon></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<div style="margin-top: 30px;">
+    <div style="text-align: center;"><strong>Resumo Pedido</strong></div>
+    <div style="margin-top: 20px; text-align: center;">
+        <label><strong>Data do pedido: </strong></label>
+        <label class="input" style="width: 30%;padding-left: 10px;padding-right: 10px;">{{data.pedidoData.pedido.dataPedido | date:'dd/MM/yyyy':'UTC'}}</label>
+            <label style="margin-left: 30px;"><strong>Desconto: </strong></label>
+            <input currencyMask (blur)="alterarValor();" [(ngModel)]="data.pedidoData.pedido.desconto" class="input" style="width: 15%; text-align: center;">
+
+            <label style="margin-left: 30px;"><strong>Valor Total: </strong></label>
+            <input currencyMask [(ngModel)]="data.pedidoData.pedido.valorTotal" class="input" style="width: 15%; text-align: center;" disabled>
+    </div>
+</div>
+<div style="margin-top: 30px;">
+    <button (click)="onNoClick();" class="buttonFechar mat-focus-indicator button mat-raised-button mat-button-base">Fechar</button>
+<button (click)="EditarPedido();" class="buttonSalvar mat-focus-indicator button mat-raised-button mat-button-base">Alterar Pedido</button>
+</div>

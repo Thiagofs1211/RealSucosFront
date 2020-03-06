@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Cliente } from './clientes/cliente';
+import { pedidoData } from './pedidos/pedidoData';
+import { filtro } from './pedidos/filtro';
+import { itemPedido } from './pedidos/itemPedido';
 
 const endpoint = 'http://localhost:8080';
 const httpOptions = {
@@ -87,6 +90,37 @@ export class RestService {
       body: JSON.stringify(data),
     };
     return this.http.delete(endpoint + '/clientes/deletar', options);
+  }
+
+  criarPedido(data: object): Observable<any> {
+    return this.http.post(endpoint + '/pedido/criar', JSON.stringify(data),this.headers);
+  }
+
+  lisarPedidosCliente(filtro: filtro): Observable<any> {
+    const params = new HttpParams().set('idCliente', filtro.idCliente+'')
+    .set('dataInicio', filtro.dataInicio+'')
+    .set('dataFim', filtro.dataFim+'');
+    return this.http.get<pedidoData>(endpoint + '/pedido/listar/cliente', {params: params});
+  }
+
+  listarPedidos(dataInicio: string, dataFim: string): Observable<any> {
+    const params = new HttpParams().set('dataInicio', dataInicio)
+    .set('dataFim', dataFim);
+    return this.http.get<pedidoData>(endpoint + '/pedido/listar/datas', {params: params});
+  }
+
+  excluirProdutoPedido(itemPedido: itemPedido): Observable<any>{
+    var options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(itemPedido),
+    };
+    return this.http.delete(endpoint + '/pedido/excluir/item',options);
+  }
+
+  editarPedido(item: pedidoData): Observable<any> {
+    return this.http.put(endpoint + '/pedido/editar', JSON.stringify(item),this.headers);
   }
 
 }

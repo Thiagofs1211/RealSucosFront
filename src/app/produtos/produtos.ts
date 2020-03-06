@@ -2,6 +2,8 @@ export class Produto {
     public idProduto: Number;
     public nome: String;
     public marca: String;
-    public preco: Number;
+    public preco: number;
     public comercio: String;
+    public isChecked: boolean;
+    public quantidade: number;
 }
