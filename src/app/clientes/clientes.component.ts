@@ -5,6 +5,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { AdicionarClienteDialogComponent } from '../adicionar-cliente-dialog/adicionar-cliente-dialog.component';
 import { EditarClienteDialogComponent } from '../editar-cliente-dialog/editar-cliente-dialog.component';
 import { InformacoesClienteDialogComponent } from '../informacoes-cliente-dialog/informacoes-cliente-dialog.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-clientes',
@@ -16,7 +17,7 @@ export class ClientesComponent implements OnInit {
   clientes: Cliente[];
   searchString: String;
 
-  constructor(public service: RestService, public dialog: MatDialog) {
+  constructor(public service: RestService, public dialog: MatDialog, private spinner: NgxSpinnerService) {
     this.getter();
    }
 
@@ -24,23 +25,29 @@ export class ClientesComponent implements OnInit {
   }
 
   getter(){
+    this.spinner.show();
     this.service.listarClientes().subscribe((data: Cliente[]) =>{
       this.clientes = data;
+      this.spinner.hide();
       console.log("Sucesso listar Clientes.");
     }, error => {
       console.log("erro: " + error);
+      this.spinner.hide();
     })
   }
 
   getterNome(){
+    this.spinner.show();
     this.service.listarClientesNome(this.searchString).subscribe((data: Cliente[]) => {
       this.clientes = data;
       console.log("Sucesso buscar Cliente pelo nome.");
+      this.spinner.hide();
     }, error => { 
       if(error.status == 404){
         this.clientes = [];
       }
       console.log("erro: " + error);
+      this.spinner.hide();
     })
   }
 

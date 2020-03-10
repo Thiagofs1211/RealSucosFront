@@ -4,6 +4,7 @@ import { RestService } from '../rest.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ProdutoAdicionarDialogComponent } from '../produto-adicionar-dialog/produto-adicionar-dialog.component';
 import { ProdutoEditarDialogComponent } from '../produto-editar-dialog/produto-editar-dialog.component';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-produtos',
@@ -17,19 +18,24 @@ export class ProdutosComponent implements OnInit {
   erro: any;
   produtosComercio: Produto;
 
-  constructor(public service: RestService, public dialog: MatDialog) {
+  constructor(public service: RestService, public dialog: MatDialog, private spinner: NgxSpinnerService) {
+    
     this.getterProdutosAvulso();
     this.getterProdutosComercio();
+    
    }
 
   ngOnInit() {
   }
 
   getterProdutosAvulso(){
+    this.spinner.show();
     this.service.getProdutosAvulso().subscribe( (data: Produto) => {
         this.produtosAvulso = data;
+        this.spinner.hide();
     }, error => {
         this.erro = error;
+        this.spinner.hide();
     });
   }
 

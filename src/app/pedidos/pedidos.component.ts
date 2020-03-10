@@ -4,10 +4,9 @@ import { RestService } from '../rest.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CriarPedidoDialogComponent } from '../criar-pedido-dialog/criar-pedido-dialog.component';
 import { pedidoData } from './pedidoData';
-import { EventEmitter } from '@angular/core';;
 import { filtro } from './filtro';
-import { InformacoesClienteDialogComponent } from '../informacoes-cliente-dialog/informacoes-cliente-dialog.component';
 import { InfoPedidoDialogComponent } from '../info-pedido-dialog/info-pedido-dialog.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-pedidos',
@@ -26,30 +25,36 @@ export class PedidosComponent implements OnInit {
   dataInicio: Date;
   filtro: filtro;
 
-  constructor(public service: RestService, public dialog: MatDialog) { }
+  constructor(public service: RestService, public dialog: MatDialog, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.getter();
   }
 
   getter(){
+    this.spinner.show();
     this.service.listarClientes().subscribe((data: Cliente[]) =>{
       this.clientes = data;
       console.log("Sucesso listar Clientes.");
+      this.spinner.hide();
     }, error => {
       console.log("erro: " + error);
+      this.spinner.hide();
     })
   }
 
   getterNome(){
+    this.spinner.show();
     this.service.listarClientesNome(this.searchString).subscribe((data: Cliente[]) => {
       this.clientes = data;
       console.log("Sucesso buscar Cliente pelo nome.");
+      this.spinner.hide();
     }, error => { 
       if(error.status == 404){
         this.clientes = [];
       }
       console.log("erro: " + error);
+      this.spinner.hide();
     })
   }
 
@@ -97,13 +102,16 @@ export class PedidosComponent implements OnInit {
       this.filtro.idCliente = this.clienteSelected.idCliente;
       this.filtro.dataInicio = this.dataInicio;
       this.filtro.dataFim = this.dataFim;
+      this.spinner.show();
       this.service.lisarPedidosCliente(this.filtro).subscribe(data => {
         this.pedidosCliente = data;
         this.totalRec = this.pedidosCliente.length;
         console.log("Pedidos listados com sucesso.");
+        this.spinner.hide();
       }, error => {
         console.log("Erro ao listar pedidos.");
         console.log(error);
+        this.spinner.hide();
       })
     }
   }
@@ -146,13 +154,16 @@ export class PedidosComponent implements OnInit {
 
   pesquisarPedidos() {
     if(this.verificaFiltros()){
+      this.spinner.show();
       this.service.listarPedidos(this.dataInicio+'', this.dataFim+'').subscribe( data => {
         this.pedidosCliente = data;
         this.totalRec = this.pedidosCliente.length;
         console.log("Pedidos listados com sucesso.");
+        this.spinner.hide();
       }, error => {
         console.log("Erro ao listar pedidos.");
         console.log(error);
+        this.spinner.hide();
       })
     }
   }

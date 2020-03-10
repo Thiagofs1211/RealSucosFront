@@ -26,6 +26,8 @@ import { DateFormat } from './DateFormat';
 import { InfoPedidoDialogComponent } from './info-pedido-dialog/info-pedido-dialog.component';
 import { NgxCurrencyModule } from "ngx-currency";
 import {NgxPaginationModule} from 'ngx-pagination';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 export var options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -69,9 +71,10 @@ export const customCurrencyMaskConfig = {
     MatDatepickerModule,
     MatNativeDateModule,
     NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxSpinnerModule
   ],
-  providers: [HttpClient, MatDatepickerModule,{ provide: DateAdapter, useClass: DateFormat }],
+  providers: [HttpClient, MatDatepickerModule,{ provide: DateAdapter, useClass: DateFormat }, { provide: LocationStrategy, useClass: HashLocationStrategy },],
   bootstrap: [AppComponent],
   entryComponents: [ProdutoAdicionarDialogComponent]
 })
