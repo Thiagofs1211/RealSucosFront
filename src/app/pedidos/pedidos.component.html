@@ -6,7 +6,7 @@
     <button mat-raised-button id="buttonListar" class="button" (click)="ListarPedidosCliente()" style="right: 30px;" disabled>Listar Pedidos</button>
     <button mat-raised-button class="button" (click)="procurarPedidos()" style="right: 50px;">Procurar Pedidos</button>
   </div>
-  <mat-radio-group [(ngModel)]="clienteSelected" (click)="habilitarButtons()">
+  <mat-radio-group [(ngModel)]="clienteSelected">
     <table id="tableCliente">
       <thead>
         <tr>
@@ -19,7 +19,7 @@
       </thead>
       <tbody>
           <tr *ngFor="let item of clientes">
-            <td style="width: 5%; float: center; padding-left: 40px;padding-right: 0px;"><mat-radio-button [value]=item></mat-radio-button></td>
+            <td style="width: 5%; float: center; padding-left: 40px;padding-right: 0px;"><mat-radio-button [value]=item (click)="habilitarButtons()"></mat-radio-button></td>
             <td style="width: 30%; text-align: center;">{{item.nome}}</td>
             <td style="width: 15%; text-align: center;">{{item.telefone | mask: '0000-0000'}}</td>
             <td style="width: 20%; text-align: center;">{{item.celular | mask: '0 0000-0000'}}</td>

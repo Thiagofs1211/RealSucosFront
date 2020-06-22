@@ -34,6 +34,7 @@ export class AdicionarClienteDialogComponent implements OnInit {
 
   salvarCliente(): void{
     if(this.verificaCampos()){
+
       this.cliente = new Cliente;
       this.cliente.nome = this.data.nome;
       this.cliente.telefone = this.data.telefone;
@@ -41,6 +42,7 @@ export class AdicionarClienteDialogComponent implements OnInit {
       this.cliente.bairro = this.data.bairro;
       this.cliente.endereco = this.data.endereco;
       this.cliente.comercio = this.data.comercio;
+      
       this.service.criarCliente(this.cliente).subscribe(data => {
         console.log("Cliente cadastrado com sucesso.");
         alert("Cliente cadastrado com sucesso.");
